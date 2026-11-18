@@ -29,7 +29,8 @@ jobs:
         run: npm ci
       - name: Dependency audit (high/critical fails)
         working-directory: frontend
-        run: npm audit --audit-level=high
+        # 限期例外清單：security/audit-exceptions.json（到期自動恢復擋下）
+        run: node ../scripts/audit-gate.mjs npm
       - name: Test
         working-directory: frontend
         run: npm test
